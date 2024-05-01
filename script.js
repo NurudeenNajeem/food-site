@@ -6,25 +6,7 @@ document.addEventListener("DOMContentLoaded", function() {
         navLinks.classList.toggle("active");
     });
 });
-document.addEventListener('DOMContentLoaded', function() {
-    const navLinks = document.querySelectorAll('.nav-links li a');
 
-    // Smooth scroll to anchor links
-    navLinks.forEach(function(link) {
-        link.addEventListener('click', function(event) {
-            event.preventDefault();
-            const targetId = this.getAttribute('href').substring(1);
-            const targetElement = document.getElementById(targetId);
-            if (targetElement) {
-                targetElement.scrollIntoView({
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
-});
-
-/*SEARCH BUTTON*/
 
 // Get the button
 let mybutton = document.getElementById("myBtn");
@@ -46,3 +28,24 @@ function topFunction() {
   document.documentElement.scrollTop = 0;
 }
 
+// Function to update the date and time
+function updateDateTime() {
+  // Create a new Date object to get the current date and time
+  const now = new Date();
+
+  // Get the current date in the format YYYY-MM-DD
+  const date = now.toISOString().split('T')[0];
+  
+  // Get the current time in the format HH:MM:SS
+  const time = now.toLocaleTimeString();
+
+  // Update the HTML elements with the current date and time
+  document.getElementById('date').textContent = ` ${date}`;
+  document.getElementById('time').textContent = `${time}`;
+}
+
+// Update the date and time every second
+setInterval(updateDateTime, 1000);
+
+// Initial update
+updateDateTime();
